@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KRMU Bites — Campus Smart Canteen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090f;--card:#141420;--border:rgba(255,255,255,0.07);
+  --gold:#ffb830;--ember:#ff6b35;--mint:#00d68f;
+  --text-1:#fff;--text-2:#a0a0b8;--text-3:#606078;
+  --font-d:'Syne',sans-serif;--font-b:'Inter',sans-serif;
+}
+html,body{height:100%;background:var(--bg);color:var(--text-1);font-family:var(--font-b);overflow-x:hidden}
+
+/* ── particles ── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;animation:float-up linear forwards;user-select:none;pointer-events:none}
+@keyframes float-up{0%{transform:translateY(0) rotate(0deg);opacity:.6}100%{transform:translateY(-110vh) rotate(720deg);opacity:0}}
+
+/* ── nav ── */
+nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:20px 40px;border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark svg{width:44px;height:44px}
+.logo-text .l-top{display:block;font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:3px;color:var(--text-3);text-transform:uppercase}
+.logo-text .l-bot{display:block;font-family:var(--font-d);font-size:20px;font-weight:800;color:var(--text-1);line-height:1}
+.logo-text .l-bot span{color:var(--gold)}
+.nav-links{display:flex;gap:8px}
+.nav-links a{padding:8px 18px;border-radius:40px;font-size:14px;font-weight:500;text-decoration:none;transition:all .2s}
+.nav-links a.outline{border:1px solid var(--border);color:var(--text-2)}
+.nav-links a.outline:hover{border-color:var(--gold);color:var(--gold)}
+.nav-links a.solid{background:var(--gold);color:#000;font-weight:600}
+.nav-links a.solid:hover{background:#ffc94d;transform:translateY(-1px)}
+
+/* ── hero ── */
+.hero{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;text-align:center;padding:100px 24px 80px;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,184,48,.1);border:1px solid rgba(255,184,48,.2);border-radius:40px;padding:6px 16px;font-size:13px;font-weight:500;color:var(--gold);margin-bottom:28px;animation:fade-in .6s ease both}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-family:var(--font-d);font-size:clamp(48px,7vw,88px);font-weight:800;line-height:1.05;letter-spacing:-2px;animation:slide-up .7s .1s ease both}
+.hero h1 .grad{background:linear-gradient(135deg,var(--gold),var(--ember));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:20px;font-size:18px;color:var(--text-2);max-width:520px;line-height:1.6;animation:slide-up .7s .2s ease both}
+.hero-ctas{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;justify-content:center;animation:slide-up .7s .3s ease both}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .25s}
+.btn-primary-hero{background:var(--gold);color:#000}
+.btn-primary-hero:hover{background:#ffc94d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,184,48,.35)}
+.btn-secondary-hero{background:rgba(255,255,255,.07);color:var(--text-1);border:1px solid var(--border)}
+.btn-secondary-hero:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;margin-top:60px;animation:slide-up .7s .4s ease both}
+.stat{text-align:center}
+.stat-num{font-family:var(--font-d);font-size:28px;font-weight:800;color:var(--gold)}
+.stat-lbl{font-size:12px;color:var(--text-3);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+.hero-line{width:1px;background:var(--border);align-self:stretch}
+
+/* ── canteen grid ── */
+.canteens-section{position:relative;z-index:5;padding:0 40px 80px}
+.section-label{font-size:12px;font-weight:600;letter-spacing:3px;color:var(--text-3);text-transform:uppercase;margin-bottom:24px}
+.canteen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.canteen-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;text-decoration:none;display:block;transition:all .25s;position:relative;overflow:hidden;animation:fade-in .5s both}
+.canteen-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,184,48,.04),transparent);opacity:0;transition:.25s}
+.canteen-card:hover{border-color:rgba(255,184,48,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.canteen-card:hover::before{opacity:1}
+.c-icon{font-size:32px;margin-bottom:12px;display:block}
+.c-name{font-family:var(--font-d);font-size:15px;font-weight:700;color:var(--text-1)}
+.c-items{font-size:12px;color:var(--text-3);margin-top:4px}
+.c-status{position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 6px var(--mint)}
+
+/* ── animations ── */
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+@keyframes slide-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.canteen-card:nth-child(1){animation-delay:.1s}
+.canteen-card:nth-child(2){animation-delay:.15s}
+.canteen-card:nth-child(3){animation-delay:.2s}
+.canteen-card:nth-child(4){animation-delay:.25s}
+.canteen-card:nth-child(5){animation-delay:.3s}
+
+/* ── glow bg ── */
+.glow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:1;filter:blur(120px);opacity:.12}
+.glow-1{top:-200px;left:-100px;background:var(--gold)}
+.glow-2{bottom:-200px;right:-100px;background:var(--ember)}
+
+@media(max-width:600px){
+  nav{padding:16px 20px}
+  .hero{padding:60px 20px 60px}
+  .hero-stats{gap:20px}
+  .canteens-section{padding:0 20px 60px}
+}
+</style>
+</head>
+<body>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+<div id="particles"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="20" fill="rgba(255,184,48,0.08)" stroke="#ffb830" stroke-width="1.5" opacity="0.6"/>
+        <line x1="15" y1="11" x2="15" y2="20" stroke="#ffb830" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="19" y1="11" x2="19" y2="20" stroke="#ffb830" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="23" y1="11" x2="23" y2="20" stroke="#ffb830" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M15 20 Q19 25 19 29 L19 33" stroke="#ffb830" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M29 11 C34 15 34 21 30 24 L29 24 L29 33" stroke="#ff6b35" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <span class="l-top">KR Mangalam</span>
+      <span class="l-bot">KRMU <span>Bites</span></span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="manager.html" class="outline">Manager</a>
+    <a href="student.html" class="solid">Order Food →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span class="dot"></span>5 Canteens · Live Menu</div>
+  <h1>Campus Food,<br><span class="grad">Reimagined.</span></h1>
+  <p class="hero-sub">Browse menus, pre-order from any campus canteen, pay via UPI, and track your meal in real time.</p>
+  <div class="hero-ctas">
+    <a href="student.html" class="btn-hero btn-primary-hero">🍽️ Browse Menu</a>
+    <a href="manager.html" class="btn-hero btn-secondary-hero">Canteen Manager →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num" id="s-items">29</div><div class="stat-lbl">Menu Items</div></div>
+    <div class="hero-line"></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">Canteens</div></div>
+    <div class="hero-line"></div>
+    <div class="stat"><div class="stat-num" id="s-orders">—</div><div class="stat-lbl">Today's Orders</div></div>
+  </div>
+</section>
+
+<section class="canteens-section">
+  <p class="section-label">Our Canteens</p>
+  <div class="canteen-grid" id="canteen-grid">
+    <a href="student.html?canteen=A+Block" class="canteen-card">
+      <span class="c-icon">🏫</span>
+      <div class="c-name">A Block</div>
+      <div class="c-items">Thali · Paratha · Chai</div>
+      <div class="c-status"></div>
+    </a>
+    <a href="student.html?canteen=B+Block+%E2%80%93+Basil" class="canteen-card">
+      <span class="c-icon">🌿</span>
+      <div class="c-name">B Block – Basil</div>
+      <div class="c-items">Burger · Pizza · Pasta</div>
+      <div class="c-status"></div>
+    </a>
+    <a href="student.html?canteen=C+Block+%E2%80%93+Nescaf%C3%A9" class="canteen-card">
+      <span class="c-icon">☕</span>
+      <div class="c-name">C Block – Nescafé</div>
+      <div class="c-items">Cappuccino · Cold Brew · Matcha</div>
+      <div class="c-status"></div>
+    </a>
+    <a href="student.html?canteen=C+Block+%E2%80%93+CCD" class="canteen-card">
+      <span class="c-icon">🧁</span>
+      <div class="c-name">C Block – CCD</div>
+      <div class="c-items">Muffin · Brownie · Latte</div>
+      <div class="c-status"></div>
+    </a>
+    <a href="student.html?canteen=C+Block+%E2%80%93+Main" class="canteen-card">
+      <span class="c-icon">🍛</span>
+      <div class="c-name">C Block – Main</div>
+      <div class="c-items">Biryani · Dosa · Lassi</div>
+      <div class="c-status"></div>
+    </a>
+  </div>
+</section>
+
+<script>
+// Particles
+const FOOD=['🍕','🍔','☕','🍛','🥪','🍟','🧋','🍱','🧁','🍫','🌯','🥐'];
+const pCont=document.getElementById('particles');
+function spawnParticle(){
+  const el=document.createElement('div');
+  el.className='particle';
+  el.textContent=FOOD[Math.floor(Math.random()*FOOD.length)];
+  const dur=5+Math.random()*5;
+  el.style.cssText=`left:${Math.random()*100}%;bottom:-40px;font-size:${1.2+Math.random()*.8}rem;animation-duration:${dur}s;opacity:0.5`;
+  pCont.appendChild(el);
+  setTimeout(()=>el.remove(),(dur+1)*1000);
+}
+setInterval(spawnParticle,700);
+
+// Live stats
+fetch('/api/analytics').then(r=>r.json()).then(d=>{
+  document.getElementById('s-orders').textContent=d.todayOrders||'0';
+  document.getElementById('s-items').textContent=d.recentOrders?.length>=0?'29':'29';
+}).catch(()=>{});
+
+// Update canteen status
+fetch('/api/canteens').then(r=>r.json()).then(canteens=>{
+  const cards=document.querySelectorAll('.canteen-card');
+  cards.forEach(card=>{
+    const href=card.getAttribute('href');
+    const cName=decodeURIComponent(href.split('canteen=')[1]||'').replace(/\+/g,' ');
+    const status=card.querySelector('.c-status');
+    if(canteens[cName]===false){
+      status.style.background='#ff4757';
+      status.style.boxShadow='0 0 6px #ff4757';
+      card.style.opacity='.6';
+      card.addEventListener('click',e=>{e.preventDefault();alert(cName+' is currently closed.');});
+    }
+  });
+}).catch(()=>{});
+</script>
+</body>
+</html>

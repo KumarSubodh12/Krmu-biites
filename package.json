@@ -1,0 +1,15 @@
+{
+  "name": "krmu-bites",
+  "version": "1.0.0",
+  "description": "KRMU Smart Canteen Full Stack",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "reset-password": "node -e \"const fs=require('fs');try{const d=JSON.parse(fs.readFileSync('krmu_data.json'));if(!d.settings)d.settings={};d.settings.managerPassword='krmu@admin';fs.writeFileSync('krmu_data.json',JSON.stringify(d,null,2));console.log('✅ Password reset to: krmu@admin');}catch(e){console.error('❌ Error:',e.message);}\""
+  },
+  "dependencies": {
+    "express": "^4.18.3",
+    "socket.io": "^4.7.4",
+    "cors": "^2.8.5"
+  }
+}
