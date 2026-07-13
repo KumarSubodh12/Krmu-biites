@@ -1,7 +1,9 @@
 # 🍽️ KRMU Bites — Full Stack Campus Canteen System
 
 Premium smart food ordering platform for KR Mangalam University.
-Luxury dark theme 
+Luxury dark theme & much more to explore!
+
+Deploy - krmu-biites-7ecjuuvh9-kumar-subodh-s-projects.vercel.app
 
 ## 🚀 Quick Start
 
