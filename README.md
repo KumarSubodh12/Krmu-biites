@@ -3,7 +3,7 @@
 Premium smart food ordering platform for KR Mangalam University.
 Luxury dark theme & much more to explore!
 
-Deploy - [krmu-biites-7ecjuuvh9-kumar-subodh-s-projects.vercel.app](url)
+Deploy - https://vercel.com/kumar-subodh-s-projects/krmu-biites/ATCwBkxE5jfKZBabvtuMTYV5hooU
 
 ## 🚀 Quick Start
 
